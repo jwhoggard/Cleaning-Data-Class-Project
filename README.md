@@ -115,7 +115,7 @@ Variables in the (long) tidy data set:  (None have NA values.)
     experiement, but we have used the descriptive values "LAYING",
     "SITTING", "STANDING", "WALKING", "WALKING_DOWNSTAIRS",
     "WALKING_UPSTAIRS".  These values are from the file
-    `activity_labels.txt`.
+    `activity_labels.txt` in the original data set.
 
   * `measure`: What is being measured.  One of 85 measurements listed
     in the file `features.txt` included in the original data set which
