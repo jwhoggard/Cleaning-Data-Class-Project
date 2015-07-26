@@ -58,28 +58,29 @@ We have a number of fixes to make here to make sure all the data is labeled appr
      
      For completeness, the repeated variables are listed below:
 
-     `[1] "fBodyAcc-bandsEnergy()-1,16"      "fBodyAcc-bandsEnergy()-1,24"      "fBodyAcc-bandsEnergy()-1,8"       "fBodyAcc-bandsEnergy()-17,24"    
- [5] "fBodyAcc-bandsEnergy()-17,32"     "fBodyAcc-bandsEnergy()-25,32"     "fBodyAcc-bandsEnergy()-25,48"     "fBodyAcc-bandsEnergy()-33,40"    
- [9] "fBodyAcc-bandsEnergy()-33,48"     "fBodyAcc-bandsEnergy()-41,48"     "fBodyAcc-bandsEnergy()-49,56"     "fBodyAcc-bandsEnergy()-49,64"    
-[13] "fBodyAcc-bandsEnergy()-57,64"     "fBodyAcc-bandsEnergy()-9,16"      "fBodyAccJerk-bandsEnergy()-1,16"  "fBodyAccJerk-bandsEnergy()-1,24" 
-[17] "fBodyAccJerk-bandsEnergy()-1,8"   "fBodyAccJerk-bandsEnergy()-17,24" "fBodyAccJerk-bandsEnergy()-17,32" "fBodyAccJerk-bandsEnergy()-25,32"
-[21] "fBodyAccJerk-bandsEnergy()-25,48" "fBodyAccJerk-bandsEnergy()-33,40" "fBodyAccJerk-bandsEnergy()-33,48" "fBodyAccJerk-bandsEnergy()-41,48"
-[25] "fBodyAccJerk-bandsEnergy()-49,56" "fBodyAccJerk-bandsEnergy()-49,64" "fBodyAccJerk-bandsEnergy()-57,64" "fBodyAccJerk-bandsEnergy()-9,16" 
-[29] "fBodyGyro-bandsEnergy()-1,16"     "fBodyGyro-bandsEnergy()-1,24"     "fBodyGyro-bandsEnergy()-1,8"      "fBodyGyro-bandsEnergy()-17,24"   
-[33] "fBodyGyro-bandsEnergy()-17,32"    "fBodyGyro-bandsEnergy()-25,32"    "fBodyGyro-bandsEnergy()-25,48"    "fBodyGyro-bandsEnergy()-33,40"   
-[37] "fBodyGyro-bandsEnergy()-33,48"    "fBodyGyro-bandsEnergy()-41,48"    "fBodyGyro-bandsEnergy()-49,56"    "fBodyGyro-bandsEnergy()-49,64"   
-[41] "fBodyGyro-bandsEnergy()-57,64"    "fBodyGyro-bandsEnergy()-9,16"`
+`fBodyAcc-bandsEnergy()-1,16`      `fBodyAcc-bandsEnergy()-1,24`      `fBodyAcc-bandsEnergy()-1,8`       `fBodyAcc-bandsEnergy()-17,24`    
+  `fBodyAcc-bandsEnergy()-17,32`     `fBodyAcc-bandsEnergy()-25,32`     `fBodyAcc-bandsEnergy()-25,48`     `fBodyAcc-bandsEnergy()-33,40`    
+  `fBodyAcc-bandsEnergy()-33,48`     `fBodyAcc-bandsEnergy()-41,48`     `fBodyAcc-bandsEnergy()-49,56`     `fBodyAcc-bandsEnergy()-49,64`    
+ `fBodyAcc-bandsEnergy()-57,64`     `fBodyAcc-bandsEnergy()-9,16`      `fBodyAccJerk-bandsEnergy()-1,16`  `fBodyAccJerk-bandsEnergy()-1,24` 
+ `fBodyAccJerk-bandsEnergy()-1,8`   `fBodyAccJerk-bandsEnergy()-17,24` `fBodyAccJerk-bandsEnergy()-17,32` `fBodyAccJerk-bandsEnergy()-25,32`
+ `fBodyAccJerk-bandsEnergy()-25,48` `fBodyAccJerk-bandsEnergy()-33,40` `fBodyAccJerk-bandsEnergy()-33,48` `fBodyAccJerk-bandsEnergy()-41,48`
+ `fBodyAccJerk-bandsEnergy()-49,56` `fBodyAccJerk-bandsEnergy()-49,64` `fBodyAccJerk-bandsEnergy()-57,64` `fBodyAccJerk-bandsEnergy()-9,16` 
+ `fBodyGyro-bandsEnergy()-1,16`     `fBodyGyro-bandsEnergy()-1,24`     `fBodyGyro-bandsEnergy()-1,8`      `fBodyGyro-bandsEnergy()-17,24`   
+ `fBodyGyro-bandsEnergy()-17,32`    `fBodyGyro-bandsEnergy()-25,32`    `fBodyGyro-bandsEnergy()-25,48`    `fBodyGyro-bandsEnergy()-33,40`   
+ `fBodyGyro-bandsEnergy()-33,48`    `fBodyGyro-bandsEnergy()-41,48`    `fBodyGyro-bandsEnergy()-49,56`    `fBodyGyro-bandsEnergy()-49,64`   
+ `fBodyGyro-bandsEnergy()-57,64`    `fBodyGyro-bandsEnergy()-9,16``
      
-     * We assign the column names by the features list retrieved
+   * We assign the column names by the features list retrieved
        above, then select only those names which include the strings
-       "mean" or "std".  (The file "features_info.txt" included in the
+       "mean" or "std".  (The file `features_info.txt` included in the
        data set explains that these were estimated from the signals.)
 
-     * Retrieve the subject labels from `subject_train.txt` and `subject_test.txt`.
+   * Retrieve the subject labels from `subject_train.txt` and `subject_test.txt`.
 
-     * Combine the subject, activity, and relevant readings into one table, called `data`.
+   * Combine the subject, activity, and relevant readings (those that
+     are a mean or standard deviation) into one table, called `data`.
 
-     * Read the activity labels from the file `activity_labels.txt`,
+   * Read the activity labels from the file `activity_labels.txt`,
        then do a simple lookup to replace each numeric code (1-6) with
        the descriptive activity label.
 
@@ -93,9 +94,10 @@ the mean per subject and activity for each reading.
 
 The result is a (long) tidy data table which is written to a file.
 The long data set has columns `subject`, `activity`, `measurement`
-(for which feature is measured), and `mean`.  Note that if you are
-looking for a particular feature in the `feature_list.txt` document,
-the characters `(`, `)`, and `-`, have been replaced with `.`.
+(which feature is being measured), and `mean`.  Note that if you are
+looking for a particular feature in the `feature_list.txt` document
+included with the original data set, the characters `(`, `)`, and `-`,
+have been replaced with `.`.
 
 For the purposes of the assignment, the results are written to a file.
 
@@ -106,21 +108,23 @@ If you prefer a wide tidy data set, it can be recast to this form using
 
 Variables in the (long) tidy data set:  (None have NA values.)
 
-	  * `subject`:  Indicates the subject who performed the experiment.  Ranges from 1-30.
+  * `subject`: Indicates the subject who performed the experiment.
+    Ranges from 1-30.
 
-	  * `activity`: This was originally given a value from 1-6 in
-            the experiement, but we have used the descriptive values
-            "LAYING", "SITTING", "STANDING", "WALKING",
-            "WALKING_DOWNSTAIRS", "WALKING_UPSTAIRS".  These values
-            are from the file `activity_labels.txt`.
+  * `activity`: This was originally given a value from 1-6 in the
+    experiement, but we have used the descriptive values "LAYING",
+    "SITTING", "STANDING", "WALKING", "WALKING_DOWNSTAIRS",
+    "WALKING_UPSTAIRS".  These values are from the file
+    `activity_labels.txt`.
 
-	  * `measure`: What is being measured.  One of 85 measurements
-            listed in the file `features.txt` included in the original
-            data set which involve a computed mean or standard
-            deviation of data.  Note that when matching with a value
-            in `features.txt`, we have replaced `(`, `)`, and `-` with
-            `.` to make legal names in R.
+  * `measure`: What is being measured.  One of 85 measurements listed
+    in the file `features.txt` included in the original data set which
+    involve a computed mean or standard deviation of data.  Note that
+    when matching with a value in `features.txt`, we have replaced
+    `(`, `)`, and `-` with `.` to make legal names in R.
 
-	  * `mean`: The mean value of the measurement (feature) listed
-            in `measure` for the given subject and activity, across
-            all tests.
+  * `mean`: The mean value of the measurement (feature) listed in
+    `measure` for the given subject and activity, across all
+    tests. Note that all of the original data was normalized to be
+    between -1 and 1 (see `README.txt` in the original data
+    set), so all means are between -1 and 1 as well.

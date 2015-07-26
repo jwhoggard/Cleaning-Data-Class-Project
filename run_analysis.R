@@ -78,8 +78,6 @@ meltData <- melt(data, id.vars=c("subject", "activity"), variable.name = "measur
 ## Now use dplyr to group by subj, act, measurement, and 
 ## find mean per variable.  This gives a long data set 
 tidyAvg <- group_by(meltData, subject, activity, measurement) %>% summarize(mean = mean(value))
-## If you prefer a wide data set, tidyAvg can be converted to wide
-## via "tidyAvg <- dcast(tidyAvg, subject+activity~variable)"
 
 ## Now write the result to a text file:
 write.table(tidyAvg, "tidyAvg.txt", row.name=FALSE)
